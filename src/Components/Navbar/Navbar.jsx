@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import logowhite from "../Assests/Images/logo-white 1.png"
 const Navbar = () => {
+  
   const [menu, setMenu] = useState(() => {
     // Get the menu item from local storage, if it exists
     return localStorage.getItem('selectedMenu') || "home";
@@ -22,6 +23,15 @@ const Navbar = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 800);
     };
+
+    const savedNavTextColor = localStorage.getItem('navTextColor');
+const savedNavLogo = localStorage.getItem('navLogo');
+
+if (savedNavTextColor && savedNavLogo) {
+  setNavTextColor(savedNavTextColor);
+  setNavLogo(savedNavLogo);
+}
+
 
     window.addEventListener('resize', handleResize);
 
@@ -50,29 +60,50 @@ const Navbar = () => {
     }
   };
 
+
+
+  // ... your other code ...
+  
+  useEffect(() => {
+    const savedNavTextColor = localStorage.getItem('navTextColor');
+    const savedNavLogo = localStorage.getItem('navLogo');
+  
+    if (savedNavTextColor && savedNavLogo) {
+      setNavTextColor(savedNavTextColor);
+      setNavLogo(savedNavLogo);
+    }
+  }, []); // Empty dependency array ensures this runs once on component mount
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  
   const handleMenuItemClick = (menuItem) => {
     setMenu(menuItem);
     setOpen(false);
     scrollToTop();
 
-
+    
     //change Navbar color
 
     if (menuItem === 'gallery') {
       setNavTextColor('#fff'); // Change text color to white
       setNavLogo(logowhite); // Change logo to the gallery logo
+      localStorage.setItem('navTextColor', '#fff'); // Save color to localStorage
+  localStorage.setItem('navLogo', 'logowhite'); // Save logo to localStorage
     } 
     else if(menuItem === 'teams'){
       setNavTextColor('#fff'); // Change text color to white
       setNavLogo(logowhite);
+      localStorage.setItem('navTextColor', '#fff'); // Save color to localStorage
+  localStorage.setItem('navLogo', 'logowhite'); // Save logo to localStorage
     }
     else {
       setNavTextColor('#000'); // Reset text color to default
       setNavLogo(logoblack); // Reset logo to the default logo
+      localStorage.setItem('navTextColor', '#fff'); // Save color to localStorage
+  localStorage.setItem('navLogo', 'logowhite'); // Save logo to localStorage
     }
   };
 

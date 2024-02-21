@@ -206,7 +206,9 @@ export const HeroParallax = ({ products }) => {
         </div>
     </div>
   </Breakpoint>
-      
+      <Breakpoint small down>
+        <HeroParallax2 products={products}/>
+      </Breakpoint>
     </BreakpointProvider>
     
   );
