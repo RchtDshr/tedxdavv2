@@ -34,7 +34,7 @@ const Thoughtloom = () => {
     tl.fromTo(circleRef.current,
       { scale: 0 }, // From scale 0
       {
-        scale: 0.9,
+        scale: 0.8,
         ease: "elastic.out(1.2,0.75)",// Add ease effect
         // delay:0,
       }
